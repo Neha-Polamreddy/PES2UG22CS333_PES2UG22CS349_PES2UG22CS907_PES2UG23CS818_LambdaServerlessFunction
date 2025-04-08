@@ -1,0 +1,10 @@
+#!/bin/sh
+'''exec' "/home/neha/Desktop/College/Sem_6/Cloud Computing/CC_Lambda/PES2UG22CS333_PES2UG22CS349_PES2UG22CS907_PES2UG23CS818_LambdaServerlessFunction/venv/bin/python3" "$0" "$@"
+' '''
+# -*- coding: utf-8 -*-
+import re
+import sys
+from pip._internal.cli.main import main
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
