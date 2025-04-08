@@ -11,3 +11,5 @@ functions = Table(
     Column("language", String, nullable=False),
     Column("timeout", Integer, nullable=False)
 )
+
+W292 no newline at end of file

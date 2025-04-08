@@ -10,13 +10,21 @@ app = FastAPI()
 metadata.create_all(engine)
 
 @app.on_event("startup")
+
+
 async def startup():
     await database.connect()
 
 @app.on_event("shutdown")
+
+
 async def shutdown():
     await database.disconnect()
 
 @app.get("/ping")
+
+
 def ping():
     return {"message": "pong"}
+
+W292 no newline at end of file
