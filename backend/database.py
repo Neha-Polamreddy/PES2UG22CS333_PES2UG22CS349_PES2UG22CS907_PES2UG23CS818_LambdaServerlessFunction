@@ -2,11 +2,15 @@
 from sqlalchemy import create_engine, MetaData
 from databases import Database
 
-DATABASE_URL = "sqlite:///./functions.db"
+# PostgreSQL connection string
+DATABASE_URL = os.getenv(
+    "DATABASE_URL", 
+    "postgresql://postgres:postgres@localhost:5432/lambda_functions"
+)
 
 database = Database(DATABASE_URL)
 metadata = MetaData()
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+engine = create_engine(DATABASE_URL)
 
 
 # <--- Add a blank line here!
