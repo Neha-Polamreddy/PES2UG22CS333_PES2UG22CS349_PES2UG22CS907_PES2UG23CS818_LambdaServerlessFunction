@@ -1,7 +1,6 @@
 # backend/models.py
 from sqlalchemy import Table, Column, Integer, String
-from database import metadata
-
+from .database import metadata
 
 functions = Table(
     "functions",
@@ -12,5 +11,3 @@ functions = Table(
     Column("language", String, nullable=False),
     Column("timeout", Integer, nullable=False)
 )
-
-# <--- Add a blank line here!
