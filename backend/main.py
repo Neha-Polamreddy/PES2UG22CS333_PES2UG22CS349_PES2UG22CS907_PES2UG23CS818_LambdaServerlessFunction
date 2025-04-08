@@ -1,10 +1,22 @@
+# backend/main.py
+
 from fastapi import FastAPI
+from .database import database, engine, metadata
+from .models import functions  # Import your SQLAlchemy models
 
 app = FastAPI()
 
-@app.get("/")
-def home():
-    return {"message": "Serverless Function Execution Platform Running"}
+# Create all tables
+metadata.create_all(engine)
 
-# Run the server: uvicorn main:app --host 0.0.0.0 --port 8000
+@app.on_event("startup")
+async def startup():
+    await database.connect()
 
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
+
+@app.get("/ping")
+def ping():
+    return {"message": "pong"}
