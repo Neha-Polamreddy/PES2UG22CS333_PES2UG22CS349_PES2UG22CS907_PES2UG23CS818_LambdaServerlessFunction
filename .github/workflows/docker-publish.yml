@@ -13,8 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Log in to GHCR
-        run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Log in to GHCR Container Registry
+        run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u Neha-Polamreddy --password-stdin
 
       - name: Set up Docker metadata
         id: meta
