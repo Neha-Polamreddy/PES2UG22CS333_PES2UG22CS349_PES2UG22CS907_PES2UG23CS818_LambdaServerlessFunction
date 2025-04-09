@@ -1,8 +1,11 @@
 # backend/main.py
 
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException
+
+# from fastapi import  Depends
 from .database import database, engine, metadata
-from typing import list
+
+# from typing import list
 from pydantic import BaseModel
 from sqlalchemy.sql import select, insert, update, delete
 from .models import functions
@@ -40,18 +43,16 @@ class FunctionBase(BaseModel):
     timeout: int
 
 
-
 class FunctionCreate(FunctionBase):
     pass
 
 
-
 class Function(FunctionBase):
     id: int
-    
 
     class Config:
         orm_mode = True
+
 
 # CRUD endpoints
 
@@ -60,10 +61,9 @@ class Function(FunctionBase):
 async def create_function(function: FunctionCreate):
     query = insert(functions).values(**function.dict())
     last_record_id = await database.execute(query)
-    
+
     # Return the created function
     return {**function.dict(), "id": last_record_id}
-
 
 
 @app.get("/functions/", response_model=List[Function])
@@ -72,17 +72,15 @@ async def read_functions():
     return await database.fetch_all(query)
 
 
-
 @app.get("/functions/{function_id}", response_model=Function)
 async def read_function(function_id: int):
     query = select(functions).where(functions.c.id == function_id)
     function = await database.fetch_one(query)
-    
+
     if function is None:
         raise HTTPException(status_code=404, detail="Function not found")
-        
-    return function
 
+    return function
 
 
 @app.put("/functions/{function_id}", response_model=Function)
@@ -90,17 +88,18 @@ async def update_function(function_id: int, function: FunctionBase):
     # Check if function exists
     query = select(functions).where(functions.c.id == function_id)
     existing_function = await database.fetch_one(query)
-    
+
     if existing_function is None:
         raise HTTPException(status_code=404, detail="Function not found")
-    
+
     # Update function
-    query = update(functions).where(functions.c.id == function_id).values(**function.dict())
+    query = (
+        update(functions).where(functions.c.id == function_id).values(**function.dict())
+    )
     await database.execute(query)
-    
+
     # Return updated function
     return {**function.dict(), "id": function_id}
-
 
 
 @app.delete("/functions/{function_id}", response_model=Function)
@@ -108,14 +107,14 @@ async def delete_function(function_id: int):
     # Check if function exists
     query = select(functions).where(functions.c.id == function_id)
     existing_function = await database.fetch_one(query)
-    
+
     if existing_function is None:
         raise HTTPException(status_code=404, detail="Function not found")
-    
+
     # Delete function
     query = delete(functions).where(functions.c.id == function_id)
     await database.execute(query)
-    
+
     # Return deleted function
     return existing_function
 
