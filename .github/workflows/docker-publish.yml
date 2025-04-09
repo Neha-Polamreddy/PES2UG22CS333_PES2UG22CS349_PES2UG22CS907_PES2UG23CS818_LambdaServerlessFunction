@@ -28,5 +28,5 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/neha-polamreddy/pes2ug22cs333_pes2ug22cs349_pes2ug22cs907_pes2ug23cs818_lambdaserverlessfunction:latest
 
