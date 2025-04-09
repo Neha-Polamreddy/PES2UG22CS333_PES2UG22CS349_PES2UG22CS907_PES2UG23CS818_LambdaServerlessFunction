@@ -1,11 +1,11 @@
 # backend/main.py
 
 from fastapi import FastAPI, HTTPException
-from .database import database, engine, metadata
+from database import database, engine, metadata
 from typing import List
 from pydantic import BaseModel
 from sqlalchemy.sql import select, insert, update, delete
-from .models import functions
+from models import functions
 # from fastapi import  Depends
 
 app = FastAPI()
