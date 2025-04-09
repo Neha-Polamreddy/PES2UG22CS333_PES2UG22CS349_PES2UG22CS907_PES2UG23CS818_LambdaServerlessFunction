@@ -4,8 +4,7 @@ from fastapi import FastAPI, HTTPException
 
 # from fastapi import  Depends
 from .database import database, engine, metadata
-
-# from typing import list
+from typing import list
 from pydantic import BaseModel
 from sqlalchemy.sql import select, insert, update, delete
 from .models import functions
