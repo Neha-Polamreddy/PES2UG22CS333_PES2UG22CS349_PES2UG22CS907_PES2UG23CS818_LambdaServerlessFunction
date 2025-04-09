@@ -9,6 +9,7 @@ from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
+
 class FunctionExecutor:
     def __init__(self):
         self.client = docker.from_env()
