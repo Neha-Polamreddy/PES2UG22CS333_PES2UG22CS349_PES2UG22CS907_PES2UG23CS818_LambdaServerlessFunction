@@ -1,0 +1,7 @@
+	{
+  "name": "hello-js",
+  "language": "javascript",
+  "route": "hello-js",
+  "timeout": 5
+}
+

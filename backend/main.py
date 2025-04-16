@@ -1,7 +1,7 @@
 # backend/main.py
 
 from fastapi import FastAPI, HTTPException
-from database import database, engine, metadata
+from database import engine, metadata, database
 from typing import List
 from pydantic import BaseModel
 from sqlalchemy.sql import select, insert, update, delete

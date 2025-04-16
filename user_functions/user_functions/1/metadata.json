@@ -1,0 +1,6 @@
+{
+  "name": "hello-python",
+  "language": "python",
+  "route": "hello-python",
+  "timeout": 10
+}
