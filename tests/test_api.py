@@ -2,7 +2,7 @@
 
 import pytest
 from httpx import AsyncClient
-from backend.main import app  # Make sure this points to your FastAPI instance
+from backend.main import app  
 
 @pytest.mark.asyncio
 async def test_list_functions():

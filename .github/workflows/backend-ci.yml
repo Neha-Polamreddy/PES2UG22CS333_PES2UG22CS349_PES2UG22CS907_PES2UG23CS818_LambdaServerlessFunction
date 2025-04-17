@@ -37,4 +37,4 @@ jobs:
 
     - name: Run backend tests
       run: |
-        pytest tests
+        PYTHONPATH=. pytest tests
